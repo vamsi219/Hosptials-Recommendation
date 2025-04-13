@@ -8,7 +8,7 @@ hospital_df = pd.read_excel("Hospitals_list.xlsx")  # or .csv if you're using cs
 app = Flask(__name__)
 
 # Load the trained model and encoders
-model = joblib.load('Model_Training\Hospital_prediction_model.pkl')
+model = joblib.load('Hospital_prediction_model.pkl')
 
 @app.route('/')
 def home():
