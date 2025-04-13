@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Healthcare Recommendation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-center mb-4">Healthcare Recommendation System</h2>
+        <form method="POST" action="/predict">
+            <div class="mb-3">
+                <label for="name" class="form-label"><b>Name</b></label>
+                <input type="text" class="form-control" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label"><b>Age</b></label>
+                <input type="number" class="form-control" name="age" min="0" max="100" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label"><b>Gender</b></label>
+                <select class="form-select" name="gender" required>
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label"><b>Locality</b></label>
+                <input type="text" class="form-control" name="locality" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label"><b>Phone Number</b></label>
+                <input type="text" class="form-control" name="phone" required>
+            </div>
+
+            <div class="mb-4">
+                <h5>Symptoms & Pre-conditions</h5>
+                <div class="row row-cols-2 row-cols-md-3">
+                    {% for symptom in ['Fever','Cough','Cold','Chest_Pain','Breathlessness','Headache','Stomach_Pain', 'Vomiting','Rash','Tooth_Pain','Ear_Pain','Eye_Irritation','Joint_Pain','Fatigue', 'Dizziness','Diabetes','B.P'] %}
+                    <div class="form-check col mb-2">
+                        <input class="form-check-input" type="checkbox" name="{{ symptom }}">
+                        <label class="form-check-label">{{ symptom.replace('_', ' ') }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"><b>Disease Category</b></label>
+                <select class="form-select" name="disease" required>
+                    <option>General</option>
+                    <option>Heart</option>
+                    <option>Lungs</option>
+                    <option>Skin</option>
+                    <option>Dental</option>
+                    <option>Ortho</option>
+                    <option>Pediatrician</option>
+                    <option>Neuro</option>
+                    <option>Gynae</option>
+                    <option>Gastro</option>
+                    <option>ENT</option>
+                    <option>Eye</option>
+                    <option>Mental_Health</option>
+                    <option>Urology</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"><b>Emergency: </b>(Child Labor, Accidental case or others)</label>
+                <div>
+                    <input class="form-check-input" type="checkbox" name="emergency" value="yes"> <span class="ms-1">Yes</span>
+                </div>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Submit & Get Recommendation</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
